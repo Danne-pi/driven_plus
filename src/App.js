@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
+import { GlobalProvider } from "./pages/Globlal";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -8,8 +9,9 @@ import SubscriptionPage from "./pages/SubscriptionPage";
 
 function App() {
   return (
+    <GlobalProvider>
+    <GlobalStyle />
     <AppStyle>
-      <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />}/>
@@ -20,6 +22,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </AppStyle>
+    </GlobalProvider>
   );
 }
 
@@ -37,7 +40,6 @@ const GlobalStyle = createGlobalStyle`
 const AppStyle = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: aqua;
   display: flex;
   justify-content: center;
   align-items: center;
