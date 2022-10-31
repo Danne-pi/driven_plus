@@ -11,7 +11,7 @@ export default function LoginPage (){
     const [email, setEmail] = useState("")
     const [pass, setPass] = useState("")
     const [load, setLoad] = useState(false)
-    const [, setUser] = useContext(AuthContext)
+    const [user, setUser] = useContext(AuthContext)
     const navigate = useNavigate()
 
     function submit(e){
@@ -27,7 +27,11 @@ export default function LoginPage (){
         promise.then((a)=>{
             setUser(a.data)
             setTimeout(() => {
-               navigate("/home")
+               if(user.membership == null){
+                navigate("/subscriptions")
+               }else{
+                navigate("/home")
+               }
             }, 500);
         })
         promise.catch((a)=>{

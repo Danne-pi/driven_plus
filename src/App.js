@@ -18,7 +18,7 @@ function App() {
           <Route path="/sign-up" element={<RegisterPage />}/>
           <Route path="/home" element={<HomePage />}/>
           <Route path="/subscriptions" element={<SubscriptionPage />}/>
-          <Route path="/subscriptions/:SubID" element={<SubDetailPage />}/>
+          <Route path="/subscriptions/:subID" element={<SubDetailPage />}/>
         </Routes>
       </BrowserRouter>
     </AppStyle>
