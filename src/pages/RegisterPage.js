@@ -4,7 +4,7 @@ import InputMask from "react-input-mask";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import driven from "../assets/driven.png"
-import { apiURL, AuthContext, Loading } from "./Globlal";
+import { apiURL, AuthContext, Loading } from "../components/Globlal";
 
 
 

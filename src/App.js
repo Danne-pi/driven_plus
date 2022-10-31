@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import { GlobalProvider } from "./pages/Globlal";
+import { GlobalProvider } from "./components/Globlal";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";

@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from '../assets/Vector.svg';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 import plus from "../assets/Plus.svg"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { apiURL, AuthContext } from "./Globlal";
+import { antiServerBugList, apiURL, AuthContext, PageLoad } from "../components/Globlal";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,8 +11,6 @@ export default function SubscriptionPage (){
     const navigate = useNavigate()
     const [user,] = useContext(AuthContext)
     const [subsList, setSubsList] = useState("")
-
-    const antiServerBugList = ["white", "#FFF16F", "#56D59F"]
     
     useEffect(()=>{
 
@@ -50,7 +48,9 @@ export default function SubscriptionPage (){
         ))
     }
 
-    return (
+    if(subsList === ""){
+        return <PageLoad />
+    }return (
     <SubscriptionStyle>
         <h1>Escolha seu Plano</h1>
         <Subscription />
@@ -64,12 +64,13 @@ const SubscriptionStyle = styled.div`
     background-color: #0E0E13;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
     h1{
         color: white;
-        margin-bottom: 120px;
+        margin-bottom: 32px;
+        margin-top: 42px;
     }
 
     .subscriptions{

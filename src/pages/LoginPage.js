@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import driven from "../assets/driven.png"
-import { apiURL, AuthContext, Loading } from "./Globlal";
+import { apiURL, AuthContext, Loading } from "../components/Globlal";
 
 
 
@@ -29,6 +29,7 @@ export default function LoginPage (){
             setTimeout(() => {
                if(user.membership == null){
                 navigate("/subscriptions")
+                console.log(user.membership)
                }else{
                 navigate("/home")
                }

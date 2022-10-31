@@ -14,6 +14,8 @@ export const GlobalProvider = ({children}) => {
     )
 }
 
+export const antiServerBugList = ["white", "#FFF16F", "#56D59F"]
+
 export const apiURL = "https://mock-api.driven.com.br/api/v4/driven-plus/"
 
 export const Loading = (props) => {
@@ -27,15 +29,6 @@ export const Loading = (props) => {
     />
 }
 
-export const BasicPageLayout = () => {
-    return <>
-    </>
-}
-
-export const BottomSpace = styled.div`
-    height: 10vh;
-`
-
 export const PageLoad = ()=>{
     return (
         <ThisLoad>
@@ -44,45 +37,12 @@ export const PageLoad = ()=>{
     )
 }
 const ThisLoad = styled.div`
-    height: 15vh;
-    width: 15vh;
-    border-radius: 12px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: #52B6FF;
-    transform: translate(-50%,-50%);
-    z-index: 12;
+    height: 100vh;
+    width: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-`
-export const ThisCheckDelete = styled.div`
-    height: 20vh;
-    width: 30vh;
-    border-radius: 12px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    background-color: #52B6FF;
-    transform: translate(-50%,-50%);
-    z-index: 12;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .question{
-        text-align: center;
-        color: white;
-    }
-    span{
-        button{
-            border: none;
-            margin-inline: 8px;
-            padding: 8px;
-            border-radius: 8px;
-        }
-    }
+    background-color: #0E0E13;
 `
 
 export function SaveUser(user){
@@ -90,3 +50,4 @@ export function SaveUser(user){
     localStorage.setItem('user', JSON.stringify(user))
    } 
 }
+
