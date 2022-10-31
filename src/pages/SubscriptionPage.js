@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from '../assets/logo.svg';
-import plus from "../assets/Plus.svg"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { antiServerBugList, apiURL, AuthContext, PageLoad } from "../components/Globlal";
+import { apiURL, AuthContext, PageLoad } from "../components/Globlal";
 import { useNavigate } from "react-router-dom";
 
 
@@ -40,8 +38,7 @@ export default function SubscriptionPage (){
             onClick={()=>{navigate("/subscriptions/"+item.id)}}
             className="subscriptions">
             <div>
-                <Logo fill={antiServerBugList[item.id -1]}/>
-                <img src={plus} alt=""/>
+                <img src={item.image} />
             </div>
             <h2>R$ {item.price}</h2>
         </div>

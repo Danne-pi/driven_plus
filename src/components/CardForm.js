@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import styled from "styled-components"
 import InputMask from "react-input-mask";
-import { apiURL, AuthContext } from "./Globlal";
+import { apiURL, AuthContext, Loading, ReloadUserInfo } from "./Globlal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +11,12 @@ export function CreditCardForm(props){
     const [card, setCard] = useState("")
     const [cod, setCod] = useState("")
     const [val, setVal] = useState("")
-    const [user,] = useContext(AuthContext)
+    const [user, setUser] = useContext(AuthContext)
     const [confirm, setConfirm] = useState(false)
+    const [load, setLoad] = useState(false)
 
     function submit(){
+        setLoad(true)
         const URL = apiURL+"subscriptions"
         const config = {
             headers: {'Authorization': 'Bearer ' + user.token}
@@ -23,14 +25,15 @@ export function CreditCardForm(props){
             membershipId: props.thisID,
             cardName: name,
             cardNumber: card,
-            securityNumber: cod,
+            securityNumber: Number(cod),
             expirationDate: val
         }
         const promise = axios.post(URL, body, config)
         
         promise.then((a)=>{
+            ReloadUserInfo(user, setUser)
             setTimeout(() => {
-               navigate("/home")
+                navigate("/home")
             }, 500);
         })
         promise.catch((a)=>{
@@ -89,12 +92,22 @@ export function CreditCardForm(props){
             {confirm === false ? <></>:
             <Confirmation>
                 <div className="wrapper">
+                {
+                    load === true ? 
+
+                    <Loading height={22} width={50} radius={9} color={"#FF4791"} />
+
+                    :
+                    <>
                     <h2>Tem certeza que deseja assinar o plano {props.title} <br/>(R$ {props.price})?</h2>
                     <div>
                         <button onClick={()=>{setConfirm(false)}} className="cancel">Não</button>
                         <button onClick={submit} className="confirm">SIM</button>
                     </div>
+                    </>
+                }
                 </div>
+                
             </Confirmation>
             }
         </CardFormStyle>

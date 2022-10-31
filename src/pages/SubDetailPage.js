@@ -2,9 +2,7 @@ import axios from "axios"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
-import { antiServerBugList, apiURL, AuthContext, PageLoad } from "../components/Globlal"
-import { ReactComponent as Logo } from '../assets/logo.svg';
-import plus from "../assets/Plus.svg"
+import { apiURL, AuthContext, PageLoad } from "../components/Globlal"
 import back from "../assets/back.svg"
 import price from "../assets/price.svg"
 import benef from "../assets/benef.svg"
@@ -30,7 +28,6 @@ export default function SubDetailPage (){
 
         promise.then((a)=>{
             setDetails(a.data)
-            console.log(a.data)
         })
         promise.catch(()=>{
             
@@ -39,10 +36,9 @@ export default function SubDetailPage (){
 
     function ListBenefits(){
         return details.perks.map((item, index)=>(
-            <a
-            href={item.link}
-            target="_blank"
-            >{(index+1)+". "+item.title}</a>
+            <h5
+            key={item.id}
+            >{(index+1)+". "+item.title}</h5>
         ))
     }
 
@@ -56,8 +52,7 @@ export default function SubDetailPage (){
                 <img src={back} alt="" />
             </Backbutton>
             <div>
-                <Logo fill={antiServerBugList[subID -1]}/>
-                <img src={plus} alt=""/>
+                <img src={details.image} alt=""/>
             </div>
             <h1>{details.name}</h1>
             <div className="info">
@@ -99,8 +94,7 @@ const SubDetailStyle = styled.div`
         justify-content: start;
         align-items: flex-start;
         
-        a{  color: white;
-            text-decoration: none;
+        h5{  color: white;
             font-weight: 300;
             font-size: 14px;
         }

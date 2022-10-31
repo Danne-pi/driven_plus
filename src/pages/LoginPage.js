@@ -27,9 +27,9 @@ export default function LoginPage (){
         promise.then((a)=>{
             setUser(a.data)
             setTimeout(() => {
-               if(user.membership == null){
+               if(a.data.membership === null){
                 navigate("/subscriptions")
-                console.log(user.membership)
+                console.log(user)
                }else{
                 navigate("/home")
                }

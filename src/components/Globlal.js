@@ -1,6 +1,7 @@
 import { ThreeDots } from "react-loader-spinner"
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import styled from "styled-components";
+import axios from "axios";
 
 export const AuthContext = createContext([false, () => {}])
 
@@ -23,7 +24,7 @@ export const Loading = (props) => {
         height={props.height} //24 
         width={props.width} //50
         radius={props.radius} //9
-        color="#FFFFFF" 
+        color={props.color === undefined? "#ffffff" : props.color} 
         ariaLabel="three-dots-loading"
         visible={true}
     />
@@ -51,3 +52,19 @@ export function SaveUser(user){
    } 
 }
 
+export function ReloadUserInfo(user, setUser){
+    const URL = apiURL+"auth/login"
+    const body = {
+        email: user.email,
+        password: user.password
+    }
+    const promise = axios.post(URL, body)
+    
+    promise.then((a)=>{
+        setUser(a.data)
+    })
+    promise.catch((a)=>{
+        const msg = a.response.data.message
+        alert(msg)
+    })
+}
